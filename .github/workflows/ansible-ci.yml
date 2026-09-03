@@ -1,3 +1,4 @@
+---
 name: Ansible CI
 
 on:
@@ -52,4 +53,3 @@ jobs:
       - name: Validate Ansible inventory
         run: |
           ansible-inventory --graph
-          
