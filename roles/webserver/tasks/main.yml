@@ -4,17 +4,17 @@
 
 - name: Update apt package cache
   ansible.builtin.apt:
-    update_cache:true
-    cache_valid_time:3600
+    update_cache: true
+    cache_valid_time: 3600
 
 - name: install webserver
   ansible.builtin.apt:
-    name: "{{ web_package}}"
+    name: "{{ web_package }}"
     state: present
 
 - name: Ensure web server is running and enabled
   ansible.builtin.service:
-    name: "{{ web_service}}"
+    name: "{{ web_service }}"
     state: started
     enabled: true
 
@@ -24,10 +24,10 @@
     dest: "{{ web_root }}/{{ web_index_file }}"
     owner: root
     group: root
-    mode: '0604'
+    mode: '0644'
   notify: Reload Nginx
 
-- name: Verify nginx  is reponding
+- name: Verify Nginx is reponding
   ansible.builtin.uri:
     url: http://localhost
     status_code: 200

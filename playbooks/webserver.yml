@@ -1,6 +1,5 @@
 ---
-- 
-  name: Automate ubuntu web servers
+- name: Automate ubuntu web servers
   hosts: webservers
   become: true
   roles:
