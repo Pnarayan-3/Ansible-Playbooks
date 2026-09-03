@@ -6,6 +6,7 @@ on:
     branches:
       - main
       - master
+      - 'feature/**'
 
   pull_request:
     branches:
@@ -39,17 +40,21 @@ jobs:
           pip install ansible-lint
 
       - name: Check YAML syntax
+        working-directory: automated-ec2
         run: |
           yamllint .
 
       - name: Check Ansible syntax
+        working-directory: automated-ec2
         run: |
           ansible-playbook playbooks/webserver.yml --syntax-check
 
       - name: Run Ansible Lint
+        working-directory: automated-ec2
         run: |
           ansible-lint
 
       - name: Validate Ansible inventory
+        working-directory: automated-ec2
         run: |
           ansible-inventory --graph
