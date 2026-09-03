@@ -1,5 +1,5 @@
 ---
-- name: Test connectivity to the webserver
+- name: Test connectivity to the web server
   ansible.builtin.ping:
 
 - name: Update apt package cache
@@ -7,7 +7,7 @@
     update_cache: true
     cache_valid_time: 3600
 
-- name: install webserver
+- name: Install web server
   ansible.builtin.apt:
     name: "{{ web_package }}"
     state: present
@@ -27,7 +27,7 @@
     mode: '0644'
   notify: Reload Nginx
 
-- name: Verify Nginx is reponding
+- name: Verify Nginx is responding
   ansible.builtin.uri:
     url: http://localhost
     status_code: 200
