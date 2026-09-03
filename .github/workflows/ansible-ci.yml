@@ -52,3 +52,4 @@ jobs:
       - name: Validate Ansible inventory
         run: |
           ansible-inventory --graph
+          
