@@ -1,5 +1,5 @@
 ---
-web_package: nginx
-web_service: nginx
-web_root: /var/www/html
-web_index_file: index.html
+webserver_package: nginx
+webserver_service: nginx
+webserver_root: /var/www/html
+webserver_index_file: index.html

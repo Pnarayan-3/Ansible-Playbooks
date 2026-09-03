@@ -9,19 +9,19 @@
 
 - name: Install web server
   ansible.builtin.apt:
-    name: "{{ web_package }}"
+    name: "{{ webserver_package }}"
     state: present
 
 - name: Ensure web server is running and enabled
   ansible.builtin.service:
-    name: "{{ web_service }}"
+    name: "{{ webserver_service }}"
     state: started
     enabled: true
 
 - name: Deploy custom index page
   ansible.builtin.template:
     src: index.html.j2
-    dest: "{{ web_root }}/{{ web_index_file }}"
+    dest: "{{ webserver_root }}/{{ webserver_index_file }}"
     owner: root
     group: root
     mode: '0644'
