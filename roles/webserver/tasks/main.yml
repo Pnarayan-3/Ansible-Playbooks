@@ -1,0 +1,33 @@
+---
+- name: Test connectivity to the webserver
+  ansible.builtin.ping:
+
+- name: Update apt package cache
+  ansible.builtin.apt:
+    update_cache:true
+    cache_valid_time:3600
+
+- name: install webserver
+  ansible.builtin.apt:
+    name: "{{ web_package}}"
+    state: present
+
+- name: Ensure web server is running and enabled
+  ansible.builtin.service:
+    name: "{{ web_service}}"
+    state: started
+    enabled: true
+
+- name: Deploy custom index page
+  ansible.builtin.template:
+    src: index.html.j2
+    dest: "{{ web_root }}/{{ web_index_file }}"
+    owner: root
+    group: root
+    mode: '0604'
+  notify: Reload Nginx
+
+- name: Verify nginx  is reponding
+  ansible.builtin.uri:
+    url: http://localhost
+    status_code: 200

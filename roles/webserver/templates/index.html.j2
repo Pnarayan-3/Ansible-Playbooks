@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Practice Server</title>
+</head>
+
+<body>
+    <h1>DevOps Practice Server</h1>
+
+    <p>Managed by Ansible</p>
+
+    <p>
+        Hostname: {{ ansible_hostname }}
+    </p>
+
+    <p>
+        Operating System: {{ ansible_distribution }}
+        {{ ansible_distribution_version }}
+    </p>
+</body>
+</html>

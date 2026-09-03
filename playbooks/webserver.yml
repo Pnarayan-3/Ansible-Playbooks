@@ -1,0 +1,10 @@
+---
+- 
+  name: Automate ubuntu web servers
+  hosts: webservers
+  become: true
+  roles:
+    - webserver
+  
+
+      

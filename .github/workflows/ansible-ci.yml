@@ -1,0 +1,54 @@
+name: Ansible CI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  ansible-Checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install Ansible
+        run: |
+          python -m pip install --upgrade pip
+          pip install ansible
+
+      - name: Install YAML Linter
+        run: |
+          pip install yamllint
+
+      - name: Install Ansible Lint
+        run: |
+          pip install ansible-lint
+
+      - name: Check YAML syntax
+        run: |
+          yamllint .
+
+      - name: Check Ansible syntax
+        run: |
+          ansible-playbook playbooks/webserver.yml --syntax-check
+
+      - name: Run Ansible Lint
+        run: |
+          ansible-lint
+
+      - name: validate Ansible inventory
+        run: |
+          ansible-inventory --graph
